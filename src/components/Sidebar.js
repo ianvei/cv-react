@@ -6,72 +6,68 @@ export default class Sidebar extends Component {
         super()
 
         this.state = {
-            phone: '',
-            email: '',
-            link: '',
-            links: [],
+            // link: {link: ''},
+            links: [{link: ""}],
         }
     }
 
-    onChange = e => {
-        console.log(e.target.value)
+    onChange = (e, index) => {
+        
+        const list = [...this.state.links]
+        list[index][e.target.name] = e.target.value;
         this.setState({
-           [e.target.name]: e.target.value,
+            links: [...list],
+            // link: {id: ''},
         });
+        console.log(this.state.links)
     };
 
-    onSubmitLinks = e => {
-       
+    onSubmitLinks = (e) => {
         e.preventDefault();
-        // console.log(this.state.link);
         this.setState({
-            links : [...this.state.links, this.state.link, this.state.phone, this.state.email],
-            phone: '',
-            email: '',
-            link: '',
+            links: [...this.state.links, {link: ''}]
         });
-
         // console.log(this.state.links)
     }
 
+    onRemoveLinks = (index) => {
+        const list = [...this.state.links]
+        if(this.state.links[0] === {}) {
+            list.splice(0, 1);
+        }
+        console.log(index)
+        console.log(list)
+        list.splice(index, 1);
+        this.setState({
+            links : [...list],
+        });
+    }
+
     render() {
-        const { phone, email, link, links } = this.state;
+        const { link, links } = this.state;
         return(
             <div className="sidebar">
-                <div className="contact-form">
-                    <form onSubmit={this.onSubmitLinks}>
+                <div className="contact-form" >
+                    {links.map((singleLink, index) => {
+                        return(
+                            <form onSubmit={this.onSubmitLinks} key={index}>
                         <div className="first-division">
                             <label htmlFor="phone">Enter phone number</label>
                                 <input
-                                    onChange={this.onChange}
-                                    value={phone}
-                                    name="phone"
+                                    onChange={(e) => this.onChange(e, index)}
+                                    value={singleLink.link}
+                                    name='link'
                                     type="text"
-                                    id="phone"
+                                    id={index}
                                 />
-                            <label htmlFor="email">Enter email address</label>
-                                <input
-                                    onChange={this.onChange}
-                                    value={email}
-                                    type="text"
-                                    name="email"
-                                    id="email"
-                                />
-                            <label htmlFor="link">Enter website address</label>
-                                <input
-                                    onChange={this.onChange}
-                                    value={link}
-                                    type="text"
-                                    name="link"
-                                    id="link"
-                                />
-                                {/* {console.log(link.text)} */}
-                            <button type='submit'>Update</button>
+                            {links.length - 1 === index && <button type='submit'>Add</button>}
                         </div>
                         <div className="second-division">
-                            <button type="button" className="remove-btn">Remove</button>
+                            {links.length > 1 && <button type="button" className="remove-btn" onClick={() => this.onRemoveLinks(index)}>Remove</button>}
                         </div>
                     </form>
+                        )
+                    })}
                 </div>
                 <Contact linksToRender={links}/>
             </div>

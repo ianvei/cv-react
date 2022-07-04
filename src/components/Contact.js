@@ -11,8 +11,8 @@ export default class Contact extends Component {
 
         return(
             <div className="contact">
-                {linksToRender.map((link) => {
-                    return <p>{link}</p>;
+                {linksToRender.map((individualLink) => {
+                    return <p>{individualLink.link}</p>;
                 })}
             </div>
         )
