@@ -30,6 +30,7 @@ code {
 }
 
 .sidebar {
+  position: relative;
   height: 100%;
   width: 25%;
   background-color: paleturquoise;
@@ -39,4 +40,55 @@ code {
   height: 100%;
   width: 75%;
   background-color: lightsalmon;
+}
+
+.sb-links-form-visible {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 300px;
+  /* height: 400px; */
+  background-color: blue;
+  gap: 30px;
+  padding: 30px;
+}
+
+.sb-links-form-visible > form {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  /* gap: 30px; */
+  /* flex-direction: column; */
+}
+
+.first-division {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.second-division {
+  display: flex;
+  justify-content: flex-end ;
+}
+
+.remove-btn {
+  margin-top: 12px;
+  height: 40px;
+}
+
+.hidden {
+  display: none;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 50px;
+  height: 32px;
+}
+
+.edit-overview-btn {
+  position: absolute;
 }
