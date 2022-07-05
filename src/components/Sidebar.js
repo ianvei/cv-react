@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Contact from "./Contact";
 import Skills from "./Skills";
+import Education from "./Education";
 
 
 export default class Sidebar extends Component {
@@ -9,11 +10,12 @@ export default class Sidebar extends Component {
 
         this.state = {
             // link: {link: ''},
-            links: [{link: ""}],
-            skills: [{skill: ""}],
-            education: [{skill: ""}],
+            links: [{link: "610.555.5555"}, {link: "bob@bobcoder.org"}, {link: "Bobcoder.com"}, {link: "github.com/bobcoder"}, {link: "linked.com/in/bobcoder"}],
+            skills: [{skill: "HTML"}, {skill: "CSS"}, {skill: "Javascript"}, {skill: "React"}, {skill: "React Native"}, {skill: "Node"}, {skill: "MongoDB"}, {skill: "PostgreSQL"}, {skill: "OOP"},  {skill: "Web Accessibility "}],
+            education: [{schoolName: "University of Calgary", educationDate: '2018 - 2022', major: 'Business Technology Management'}],
             isActive: false,
             skillsIsActive: false,
+            educationIsActive: false,
         }
     }
 
@@ -23,7 +25,6 @@ export default class Sidebar extends Component {
         list[index][e.target.name] = e.target.value;
         this.setState({
             links: [...list],
-            // link: {id: ''},
         });
         console.log(this.state.links)
     };
@@ -34,9 +35,18 @@ export default class Sidebar extends Component {
         list[index][e.target.name] = e.target.value;
         this.setState({
             skills: [...list],
-            // link: {id: ''},
         });
         console.log(this.state.skills)
+    };
+
+    onChangeEducation = (e, index) => {
+        
+        const list = [...this.state.education]
+        list[index][e.target.name] = e.target.value;
+        this.setState({
+            education: [...list],
+        });
+        console.log(this.state.education)
     };
 
     
@@ -46,7 +56,6 @@ export default class Sidebar extends Component {
         this.setState({
             links: [...this.state.links, {link: ''}]
         });
-        // console.log(this.state.links)
     }
 
     onSubmitSkills = (e) => {
@@ -54,14 +63,17 @@ export default class Sidebar extends Component {
         this.setState({
             skills: [...this.state.skills, {skill: ''}]
         });
-        // console.log(this.state.links)
+    }
+
+    onSubmitEducation = (e) => {
+        e.preventDefault();
+        this.setState({
+            education: [...this.state.education, {schoolName: "", educationDate: '', major: ''}]
+        });
     }
 
     onRemoveLinks = (index) => {
         const list = [...this.state.links]
-        // if(this.state.links[0] === {}) {
-        //     list.splice(0, 1);
-        // }
         console.log(index)
         console.log(list)
         list.splice(index, 1);
@@ -72,14 +84,21 @@ export default class Sidebar extends Component {
 
     onRemoveSkills = (index) => {
         const list = [...this.state.skills]
-        // if(this.state.skills[0] === {}) {
-        //     list.splice(0, 1);
-        // }
         console.log(index)
         console.log(list)
         list.splice(index, 1);
         this.setState({
             skills : [...list],
+        });
+    }
+
+    onRemoveEducation = (index) => {
+        const list = [...this.state.education]
+        console.log(index)
+        console.log(list)
+        list.splice(index, 1);
+        this.setState({
+            education : [...list],
         });
     }
 
@@ -108,8 +127,21 @@ export default class Sidebar extends Component {
         })
     }
 
+    openEducation = () => {
+        console.log('edu')
+        this.setState({
+            educationIsActive: true
+        })
+    }
+
+    closeEducation = () => {
+        this.setState({
+            educationIsActive: false
+        })
+    }
+
     render() {
-        const { links, isActive, skillsIsActive, skills } = this.state;
+        const { links, isActive, skillsIsActive, skills, education, educationIsActive } = this.state;
         return(
             <div className="sidebar">
                 <button onClick={this.openForm} className="edit-overview-btn">Edit</button>
@@ -160,12 +192,54 @@ export default class Sidebar extends Component {
                         )
                     })}
                 </div>
+
+                <button onClick={this.openEducation} className="edit-education-btn">Edit</button>
+                <div className={educationIsActive ? "education-links-form-visible" : 'hidden'} >
+                    <button className="close-education" onClick={this.closeEducation}>Close</button>
+                    {education.map((singleEducation, index) => {
+                        return(
+                            <form onSubmit={this.onSubmitEducation} key={index}> 
+                                <div className="first-division">
+                                    <label htmlFor="schoolName">Enter the name of your school</label>
+                                        <input
+                                            onChange={(e) => this.onChangeEducation(e, index)}
+                                            value={singleEducation.schoolName}
+                                            name='schoolName'
+                                            type="text"
+                                            id={index}
+                                        />
+                                    <label htmlFor="educationDate">Enter the date range</label>
+                                        <input
+                                            onChange={(e) => this.onChangeEducation(e, index)}
+                                            value={singleEducation.educationDate}
+                                            name='educationDate'
+                                            type="text"
+                                            id={index}
+                                        /> 
+                                    <label htmlFor="educationMajor">Enter your major</label>
+                                        <input
+                                            onChange={(e) => this.onChangeEducation(e, index)}
+                                            value={singleEducation.major}
+                                            name='major'
+                                            type="text"
+                                            id={index}
+                                        />          
+                                    {/* {education.length - 1 === index && <button type='submit' className="add-btn">Add</button>} */}
+                                </div>
+                                <div className="second-division">
+                                    {education.length > 1 && <button type="button" className="remove-btn" onClick={() => this.onRemoveEducation(index)}>Remove</button>}
+                                </div>
+                            </form>
+                        )
+                    })}
+                </div>
+
                 <h1>CONTACT</h1>
                 <Contact linksToRender={links} />
                 <h1>SKILLS</h1>
                 <Skills skillsToRender={skills} />
                 <h1>EDUCATION</h1>
-                {/* <Education linksToRender={education} /> */}
+                <Education educationToRender={education} />
 
             </div>
         )
