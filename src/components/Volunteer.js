@@ -68,6 +68,7 @@ export default class Volunteer extends Component {
 
     closeForm = (e) => {
         e.preventDefault();
+        e.stopPropagation();
         this.setState({
             isActive: false
         })
@@ -78,71 +79,75 @@ export default class Volunteer extends Component {
        const { isActive, job, jobs } = this.state;
 
         return(
-            <div className="work-cont">
-                <button onClick={this.openForm} className="edit-work-btn">Edit</button>
+            <div className="volunteer-form-cont" onClick={this.openForm}>
+                <div  className={isActive ? "work-form-visible" : 'hidden'} >
+                    {/* <button onClick={this.openForm} className="edit-work-btn">Edit</button> */}
+                    
+                        
+                        {jobs.map((singleJob, index) => {
+                            return(
+                                <form action="" onSubmit={this.onSubmit} key={index}>
+                                    { index === 0 && <button className="workClose" onClick={this.closeForm}>Close</button>}
+                                    <div className="job-form-cont">
+                                        <label htmlFor="title">Enter job title</label>
+                                            <input
+                                                onChange={(e) => this.onChange(e, index)}
+                                                value={singleJob.job.title}
+                                                name='title'
+                                                type="text"
+                                                id={index}
+                                            />
+                                        <label htmlFor="employer">Enter company name</label>
+                                            <input
+                                                onChange={(e) => this.onChange(e, index)}
+                                                value={singleJob.job.employer}
+                                                name='employer'
+                                                type="text"
+                                                id={index}
+                                            />    
+                                        <label htmlFor="city">Enter city name</label>
+                                            <input
+                                                onChange={(e) => this.onChange(e, index)}
+                                                value={singleJob.job.city}
+                                                name='city'
+                                                type="text"
+                                                id={index}
+                                            />     
+                                        <label htmlFor="province">Enter province</label>
+                                            <input
+                                                onChange={(e) => this.onChange(e, index)}
+                                                value={singleJob.job.province}
+                                                name='province'
+                                                type="text"
+                                                id={index}
+                                            />    
+                                        <label htmlFor="dateRange">Enter date range</label>
+                                            <input
+                                                onChange={(e) => this.onChange(e, index)}
+                                                value={singleJob.job.dateRange}
+                                                name='dateRange'
+                                                type="text"
+                                                id={index}
+                                            />  
+                                        <label htmlFor="summary">Enter summary of role</label>
+                                                <textarea name="summary" className="textArea" onChange={(e) => this.onChange(e, index)} value={singleJob.job.summary} id="" cols="30" rows="10"></textarea>
+                                        {jobs.length - 1 === index && <button type='submit' className="add-btn">Add</button>}
+                                        {jobs.length > 1 && <button type="button" className="remove-btn" onClick={() => this.onRemoveLinks(index)}>Remove</button>}
+                                    </div>
+                                </form>           
+                            )
+                        })}                                                            
                 
-                    <button className="workClose" onClick={this.closeForm}>Close</button>
-                    {jobs.map((singleJob, index) => {
-                        return(
-                            <form action="" className={isActive ? "work-form-visible" : 'hidden'} onSubmit={this.onSubmit} key={index}>
-                                <div className="job-form-cont">
-                                    <label htmlFor="title">Enter job title</label>
-                                        <input
-                                            onChange={(e) => this.onChange(e, index)}
-                                            value={singleJob.job.title}
-                                            name='title'
-                                            type="text"
-                                            id={index}
-                                        />
-                                    <label htmlFor="employer">Enter company name</label>
-                                        <input
-                                            onChange={(e) => this.onChange(e, index)}
-                                            value={singleJob.job.employer}
-                                            name='employer'
-                                            type="text"
-                                            id={index}
-                                        />    
-                                    <label htmlFor="city">Enter city name</label>
-                                        <input
-                                            onChange={(e) => this.onChange(e, index)}
-                                            value={singleJob.job.city}
-                                            name='city'
-                                            type="text"
-                                            id={index}
-                                        />     
-                                    <label htmlFor="province">Enter province</label>
-                                        <input
-                                            onChange={(e) => this.onChange(e, index)}
-                                            value={singleJob.job.province}
-                                            name='province'
-                                            type="text"
-                                            id={index}
-                                        />    
-                                    <label htmlFor="dateRange">Enter date range</label>
-                                        <input
-                                            onChange={(e) => this.onChange(e, index)}
-                                            value={singleJob.job.dateRange}
-                                            name='dateRange'
-                                            type="text"
-                                            id={index}
-                                        />  
-                                    <label htmlFor="summary">Enter summary of role</label>
-                                            <textarea name="summary" className="textArea" onChange={(e) => this.onChange(e, index)} value={singleJob.job.summary} id="" cols="30" rows="10"></textarea>
-                                    {jobs.length - 1 === index && <button type='submit' className="add-btn">Add</button>}
-                                    {jobs.length > 1 && <button type="button" className="remove-btn" onClick={() => this.onRemoveLinks(index)}>Remove</button>}
-                                </div>
-                            </form>           
-                        )
-                    })}                                                            
-               
-                <h1>Volunteer Experience</h1>
-                <IndividualVolunteer jobsToRender={jobs}/>
-                {/* 
-                <IndividualWork />
-                <h4>{jobName}</h4>
-                <p>{date}</p>
-                <p>{description}</p> */}
-                {/* Will have to map for multiple */}
+                    
+                    {/* 
+                    <IndividualWork />
+                    <h4>{jobName}</h4>
+                    <p>{date}</p>
+                    <p>{description}</p> */}
+                    {/* Will have to map for multiple */}
+                </div>
+                    <h1>VOLUNTEER EXPERIENCE</h1>
+                    <IndividualVolunteer jobsToRender={jobs}/>
             </div>
         )
     }

@@ -78,6 +78,7 @@ export default class Work extends Component {
 
     closeForm = (e) => {
         e.preventDefault();
+        e.stopPropagation();
         this.setState({
             isActive: false
         })
@@ -88,14 +89,12 @@ export default class Work extends Component {
        const { isActive, job, jobs } = this.state;
 
         return(
-            <div className="work-cont">
-                <button onClick={this.openForm} className="edit-work-btn">Edit</button>
-                
-                    
+            <div className="work-cont" onClick={this.openForm}>   
+                <div className={isActive ? "work-form-visible" : 'hidden'}>            
                     {jobs.map((singleJob, index) => {
                         return(
-                            <form action="" className={isActive ? "work-form-visible" : 'hidden'} onSubmit={this.onSubmit} key={index}>
-                                <button className="workClose" onClick={this.closeForm}>Close</button>
+                            <form action="" onSubmit={this.onSubmit} key={index}>
+                                {index === 0 && <button className="workClose" onClick={this.closeForm}>Close</button>}
                                 <div className="job-form-cont">
                                     <label htmlFor="title">Enter job title</label>
                                         <input
@@ -138,15 +137,15 @@ export default class Work extends Component {
                                             id={index}
                                         />  
                                     <label htmlFor="summary">Enter summary of role</label>
-                                            <textarea name="summary" className="textArea" onChange={(e) => this.onChange(e, index)} value={singleJob.job.summary} id="" cols="30" rows="10"></textarea>
+                                            <textarea name="summary" className="textArea" onChange={(e) => this.onChange(e, index)} value={singleJob.job.summary} id="" cols="30" rows="5"></textarea>
                                     {jobs.length - 1 === index && <button type='submit' className="add-btn">Add</button>}
                                     {jobs.length > 1 && <button type="button" className="remove-btn" onClick={() => this.onRemoveLinks(index)}>Remove</button>}
                                 </div>
                             </form>           
                         )
                     })}                                                            
-               
-                <h1>Work Experience</h1>
+                </div>    
+                <h1>WORK EXPERIENCE</h1>
                 <IndividualWork jobsToRender={jobs}/>
                 {/* 
                 <IndividualWork />

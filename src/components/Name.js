@@ -30,7 +30,9 @@ export default class Name extends Component {
         })
     }
 
-    closeName = () => {
+    closeName = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
         this.setState({
             nameIsActive: false
         })
@@ -49,11 +51,11 @@ export default class Name extends Component {
        const { nameText, jobTitle, nameIsActive } = this.state;
 
         return (
-                <div className="name-cont">
+                <div className="name-cont" onClick={this.openName}>
 
-                    <button onClick={this.openName} className="edit-name-btn">Edit</button>
+                    {/* <button onClick={this.openName} className="edit-name-btn">Edit</button> */}
                         <form action="" className={nameIsActive ? "name-is-visible" : 'hidden'}>
-                            <div className="nameClose" onClick={this.closeName}>Close</div>
+                            <button className="nameClose" onClick={this.closeName}>Close</button>
                             <label htmlFor="nameText">Enter your name</label>
                                 <input
                                     onChange={(e) => this.onChange(e)}

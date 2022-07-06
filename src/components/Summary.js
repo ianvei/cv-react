@@ -23,6 +23,7 @@ export default class Summary extends Component {
     }
 
     closeForm = (e) => {
+        e.stopPropagation();
         e.preventDefault();
         this.setState({
             isActive: false
@@ -34,8 +35,8 @@ export default class Summary extends Component {
        const { textArea, isActive } = this.state;
 
         return(
-            <div className="summary-cont">
-                <button onClick={this.openForm} className="edit-summary-btn">Edit</button>
+            <div className="summary-cont" onClick={this.openForm}>
+                {/* <button onClick={this.openForm} className="edit-summary-btn">Edit</button> */}
                 <form action="" className={isActive ? "summary-form-visible" : 'hidden'}>
                     <button className="summaryClose" onClick={this.closeForm}>Close</button>
                     <label htmlFor="textArea">Enter your name</label>

@@ -10,6 +10,9 @@ body {
 
 * {
   box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
 }
 
 code {
@@ -63,10 +66,16 @@ code {
   position: absolute;
   width: 300px;
   /* height: 400px; */
-  background-color: blue;
+  /* background-color: blue;
+  gap: 30px;
+  padding: 30px;
+  z-index: 1; */
+  background-color: white;
   gap: 30px;
   padding: 30px;
   z-index: 1;
+  box-shadow: 0 0 20px rgb(115, 115, 115);
+  border-radius: 10px;
 }
 
 .sb-links-form-visible > form {
@@ -84,6 +93,12 @@ code {
   gap: 10px;
 }
 
+.skills-links-form-visible > form {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .second-division {
   display: flex;
   justify-content: flex-end ;
@@ -99,11 +114,11 @@ code {
 }
 
 .close {
-  position: absolute;
+  /* position: absolute;
   right: 10px;
   top: 10px;
   width: 50px;
-  height: 32px;
+  height: 32px; */
 }
 
 .edit-overview-btn {
@@ -112,16 +127,21 @@ code {
 }
 
 .skills-links-form-visible {
-  top: 200px;
   display: flex;
   flex-direction: column;
   position: absolute;
   width: 300px;
   /* height: 400px; */
-  background-color: blue;
+  /* background-color: blue;
+  gap: 30px;
+  padding: 30px;
+  z-index: 1; */
+  background-color: white;
   gap: 30px;
   padding: 30px;
   z-index: 1;
+  box-shadow: 0 0 20px rgb(115, 115, 115);
+  border-radius: 10px;
 }
 
 .edit-skill-btn {
@@ -131,16 +151,19 @@ code {
 }
 
 .education-links-form-visible {
-  top: 400px;
+  top: 700px;
+  /* top: 100px; */
   display: flex;
   flex-direction: column;
   position: absolute;
   width: 300px;
-  /* height: 400px; */
-  background-color: blue;
+  /* height: 100%; */
+  background-color: white;
   gap: 30px;
   padding: 30px;
   z-index: 1;
+  box-shadow: 0 0 20px rgb(115, 115, 115);
+  border-radius: 10px;
 }
 
 .edit-education-btn {
@@ -179,11 +202,14 @@ code {
   flex-direction: column;
   position: absolute;
   width: 300px;
-  /* height: 400px; */
-  background-color: blue;
+  /* height: 100%; */
+  background-color: white;
   gap: 30px;
   padding: 30px;
   z-index: 1;
+  box-shadow: 0 0 20px rgb(115, 115, 115);
+  border-radius: 10px;
+
 }
 
 .edit-summary-btn {
@@ -232,7 +258,7 @@ h3 {
 .App {
   box-shadow: 0 0 20px rgb(115, 115, 115);;
 }
-.edit-overview-btn, .edit-education-btn, .edit-skill-btn, .edit-summary-btn {
+.edit-overview-btn, .edit-education-btn, .edit-skill-btn {
   display: none;
 }
 
@@ -240,3 +266,94 @@ h3 {
   cursor: pointer;
 }
 
+.name-is-visible {
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 300px;
+  /* height: 100%; */
+  background-color: white;
+  gap: 30px;
+  padding: 30px;
+  z-index: 1;
+  box-shadow: 0 0 20px rgb(115, 115, 115);
+  border-radius: 10px;
+
+  /* display: flex;
+  position: fixed;
+  z-index: 8;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4); */
+}
+
+.work-form-visible {
+  border-radius: 10px;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 700px;
+  /* height: 100%; */
+  background-color: white;
+  gap: 30px;
+  padding: 30px;
+  z-index: 1;
+  box-shadow: 0 0 20px rgb(115, 115, 115);
+}
+
+.job-form-cont {
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 100px; */
+}
+
+.work-cont {
+  margin-top: 20px;
+}
+
+.title {
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.title > p {
+  margin: 0;
+}
+
+.individualJob > .job-date {
+  margin: 0;
+  font-size: 12px;
+}
+
+.job-cont {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.volunteer-form-cont > h1 {
+  margin-top: 10px;
+}
+
+.individualVolunteer > .job-date {
+  margin: 0;
+  font-size: 12px;
+}
+
+.name-cont > h4 {
+  margin: 0;
+
+  margin-bottom: 50px;
+  margin-top: 5px;
+  color: blue;
+}
