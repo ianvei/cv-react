@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import IndividualWork from "./IndividualWork";
+import IndividualVolunteer from "./IndividualVolunteer";
 
-export default class Work extends Component {
+export default class Volunteer extends Component {
     constructor() {
         super()
 
@@ -9,28 +9,18 @@ export default class Work extends Component {
             isActive: false,
             jobs: [
                 {job: {
-                    title: 'Full Stack Web Developer',
-                    employer: "Bob's Consulting",
-                    city: 'Calgary',
+                    title: 'Free Software Foundation ',
+                    city: 'Boston',
                     province: 'AB',
-                    dateRange: 'January 2019 - Present',
-                    summary: 'Created full stack web applications and static websites for different clients across small and medium size businesses. Also, consulted on SEO and social media strategy.',
+                    dateRange: 'March 2021 — Present',
+                    summary: 'Helped organize mailing for end-of-year fundraising campaigns.',
                 }},
                 {job: {
-                    title: 'Marketing Associate',
-                    employer: "Central Perk",
-                    city: 'Calgary',
+                    title: 'Free Software Foundation ',
+                    city: 'Boston',
                     province: 'AB',
-                    dateRange: 'January 2018 — December 2019',
-                    summary: 'Established a strategy and communications campaign that raised 300% over fundraising goal raising 35,000 digitally and $110,000 in total. ',
-                }},
-                {job: {
-                    title: 'Data Analytics Intern',
-                    employer: "Huge Bank",
-                    city: 'Toronto',
-                    province: 'ON',
-                    dateRange: 'January 2021 — December 2022',
-                    summary: 'Pulled complex data from relational databases using SQL, visualized data using Power BI, Python, R studio.',
+                    dateRange: 'March 2021 — Present',
+                    summary: 'Helped organize mailing for end-of-year fundraising campaigns.',
                 }},
         ]
         }
@@ -91,11 +81,10 @@ export default class Work extends Component {
             <div className="work-cont">
                 <button onClick={this.openForm} className="edit-work-btn">Edit</button>
                 
-                    
+                    <button className="workClose" onClick={this.closeForm}>Close</button>
                     {jobs.map((singleJob, index) => {
                         return(
                             <form action="" className={isActive ? "work-form-visible" : 'hidden'} onSubmit={this.onSubmit} key={index}>
-                                <button className="workClose" onClick={this.closeForm}>Close</button>
                                 <div className="job-form-cont">
                                     <label htmlFor="title">Enter job title</label>
                                         <input
@@ -146,8 +135,8 @@ export default class Work extends Component {
                         )
                     })}                                                            
                
-                <h1>Work Experience</h1>
-                <IndividualWork jobsToRender={jobs}/>
+                <h1>Volunteer Experience</h1>
+                <IndividualVolunteer jobsToRender={jobs}/>
                 {/* 
                 <IndividualWork />
                 <h4>{jobName}</h4>

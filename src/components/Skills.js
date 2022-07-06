@@ -10,7 +10,7 @@ export default class Skills extends Component {
         // console.log(linksToRender)
 
         return(
-            <div className="contact">
+            <div className="skills">
                 {skillsToRender.map((individualSkill) => {
                     return <p>{individualSkill.skill}</p>;
                 })}

@@ -12,7 +12,7 @@ export default class Sidebar extends Component {
             // link: {link: ''},
             links: [{link: "610.555.5555"}, {link: "bob@bobcoder.org"}, {link: "Bobcoder.com"}, {link: "github.com/bobcoder"}, {link: "linked.com/in/bobcoder"}],
             skills: [{skill: "HTML"}, {skill: "CSS"}, {skill: "Javascript"}, {skill: "React"}, {skill: "React Native"}, {skill: "Node"}, {skill: "MongoDB"}, {skill: "PostgreSQL"}, {skill: "OOP"},  {skill: "Web Accessibility "}],
-            education: [{schoolName: "University of Calgary", educationDate: '2018 - 2022', major: 'Business Technology Management'}],
+            education: [{schoolName: "University of Calgary", educationDate: '2018 - 2022', major: 'Business Technology'}],
             isActive: false,
             skillsIsActive: false,
             educationIsActive: false,
@@ -112,6 +112,7 @@ export default class Sidebar extends Component {
         this.setState({
             isActive: false
         })
+        
     }
 
     openSkill = () => {
@@ -144,7 +145,7 @@ export default class Sidebar extends Component {
         const { links, isActive, skillsIsActive, skills, education, educationIsActive } = this.state;
         return(
             <div className="sidebar">
-                <button onClick={this.openForm} className="edit-overview-btn">Edit</button>
+               
                 <div className={isActive ? "sb-links-form-visible" : 'hidden'} >
                     <button className="close" onClick={this.closeForm}>Close</button>
                     {links.map((singleLink, index) => {
@@ -168,7 +169,7 @@ export default class Sidebar extends Component {
                         )
                     })}
                 </div>
-                <button onClick={this.openSkill} className="edit-skill-btn">Edit</button>
+                
                 <div className={skillsIsActive ? "skills-links-form-visible" : 'hidden'} >
                     <button className="close-skill" onClick={this.closeSkill}>Close</button>
                     {skills.map((singleSkill, index) => {
@@ -193,7 +194,7 @@ export default class Sidebar extends Component {
                     })}
                 </div>
 
-                <button onClick={this.openEducation} className="edit-education-btn">Edit</button>
+                
                 <div className={educationIsActive ? "education-links-form-visible" : 'hidden'} >
                     <button className="close-education" onClick={this.closeEducation}>Close</button>
                     {education.map((singleEducation, index) => {
@@ -234,13 +235,23 @@ export default class Sidebar extends Component {
                     })}
                 </div>
 
-                <h1>CONTACT</h1>
-                <Contact linksToRender={links} />
-                <h1>SKILLS</h1>
-                <Skills skillsToRender={skills} />
-                <h1>EDUCATION</h1>
-                <Education educationToRender={education} />
-
+                <div className="contact-container-sb" onClick={this.openForm}>
+                    <button onClick={this.openForm} className="edit-overview-btn">Edit</button>
+                    <h1>CONTACT</h1>
+                    <Contact linksToRender={links} />
+                </div>
+                
+                <div className="skill-container-sb" onClick={this.openSkill}>
+                    <button onClick={this.openSkill} className="edit-skill-btn">Edit</button>
+                    <h1>SKILLS</h1>
+                    <Skills skillsToRender={skills} />
+                </div>
+                
+                <div className="education-container-sb" onClick={this.openEducation}>
+                    <button onClick={this.openEducation} className="edit-education-btn">Edit</button>
+                    <h1>EDUCATION</h1>
+                    <Education educationToRender={education} />
+                </div>
             </div>
         )
     }
