@@ -39,7 +39,7 @@ export default class Summary extends Component {
                 {/* <button onClick={this.openForm} className="edit-summary-btn">Edit</button> */}
                 <form action="" className={isActive ? "summary-form-visible" : 'hidden'}>
                     <button className="summaryClose" onClick={this.closeForm}>Close</button>
-                    <label htmlFor="textArea">Enter your name</label>
+                    <label htmlFor="textArea">Enter profile summary</label>
                         {/* <input
                             className="textArea"
                             rows='4'

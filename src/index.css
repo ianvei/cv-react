@@ -357,3 +357,15 @@ h3 {
   margin-top: 5px;
   color: blue;
 }
+
+.App > .body-content > div:hover {
+  box-shadow: 0 0 20px rgb(115, 115, 115);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.App > .sidebar > div:hover {
+  box-shadow: 0 0 20px rgb(115, 115, 115);
+  border-radius: 10px;
+  /* border: 1px solid black; */
+}

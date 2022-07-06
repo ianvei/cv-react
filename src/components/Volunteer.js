@@ -97,14 +97,14 @@ export default class Volunteer extends Component {
                                                 type="text"
                                                 id={index}
                                             />
-                                        <label htmlFor="employer">Enter company name</label>
+                                        {/* <label htmlFor="employer">Enter company name</label>
                                             <input
                                                 onChange={(e) => this.onChange(e, index)}
                                                 value={singleJob.job.employer}
                                                 name='employer'
                                                 type="text"
                                                 id={index}
-                                            />    
+                                            />     */}
                                         <label htmlFor="city">Enter city name</label>
                                             <input
                                                 onChange={(e) => this.onChange(e, index)}
